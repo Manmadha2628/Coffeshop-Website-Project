@@ -1,78 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Bliss</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Bliss ☕</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img id="logo" src="./Images/logo.png" alt="Coffee Bliss Logo">
-        <h1>Coffee Bliss</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#menu">Menu</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="themeToggle">
-                    <img id="themeIcon" src="./Images/logo.png" alt="darkMode">
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="home" class="hero">
-        <img src="./Images/home.png" alt="Welcome to Coffee Bliss">
-        <h2>Welcome to Coffee Bliss</h2>
-        <p>Where every cup is brewed with love.</p>
-        <button onclick="scrollToSection('menu')">Explore Menu</button>
-    </section>
-    
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We serve the best coffee in town, made from freshly roasted beans.</p>
-    </section>
-    
-    <section id="menu">
-        <h2>Our Menu</h2>
-        <ul>
-            <li onclick="chooseType('Espresso')"><img src="./Images/espresso.png" alt="Espresso">Espresso - $3 </li>
-            <li onclick="chooseType('Latte')"><img src="latte.jpg" alt="Latte">Latte - $4 </li>
-            <li onclick="chooseType('Cappuccino')"><img src="./Images/capucchino.png" alt="Cappuccino">Cappuccino - $4 </li>
-            <li onclick="chooseType('Mocha')"><img src="mocha.jpg" alt="Mocha">Mocha - $5 </li>
-        </ul>
-    </section>
-    
-    <section id="reviews">
-        <h2>Customer Reviews</h2>
-        <p>"Best coffee shop ever!" - Jane</p>
-        <p>"Great ambiance and amazing coffee." - John</p>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: contact@coffeebliss.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </section>
-    
-    <div id="selectionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="selectionTitle"></h2>
-            <div id="options"></div>
-        </div>
+  <header>
+    <img src="./Images/logo.png" alt="Coffee Bliss Logo" class="logo">
+    <h1>Coffee Bliss</h1>
+    <button id="themeToggle">
+      <img id="themeIcon" src="./Images/theme.png" alt="Theme Toggle">
+    </button>
+  </header>
+
+  <section id="menu">
+    <h2>Our Coffee Menu</h2>
+    <ul>
+      <li onclick="chooseType('Espresso')">
+        <img src="./Images/espresso.png" alt="Espresso">Espresso - ₹100
+      </li>
+      <li onclick="chooseType('Latte')">
+        <img src="./Images/latte.png" alt="Latte">Latte - ₹50
+      </li>
+      <li onclick="chooseType('Cappuccino')">
+        <img src="./Images/capucchino.png" alt="Cappuccino">Cappuccino - ₹70
+      </li>
+      <li onclick="chooseType('Mocha')">
+        <img src="./Images/mocha.png" alt="Mocha">Mocha - ₹50
+      </li>
+    </ul>
+  </section>
+
+  <div id="selectionModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="selectedCoffee"></h3>
+      <p>How would you like your coffee?</p>
+      <button onclick="selectTemperature('Hot')">Hot</button>
+      <button onclick="selectTemperature('Cold')">Cold</button>
     </div>
-    
-    <script>
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-    
-    <script src="script.js"></script>
+  </div>
+
+  <section id="order">
+    <h2>Your Order</h2>
+    <p id="orderDetails">No order selected yet.</p>
+  </section>
+
+  <footer>
+    <p>☕ Made with love by <b>Manmadha</b> | © 2025 Coffee Bliss</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
