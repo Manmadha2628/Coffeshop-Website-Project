@@ -13,9 +13,7 @@ function closeModal() {
 function selectTemperature(type) {
   document.getElementById("orderDetails").innerText = "Order: " + selectedCoffee + " (" + type + ")";
   closeModal();
-}
-
-// Close modal when clicking outside
+  
 window.onclick = function(event) {
   const modal = document.getElementById("selectionModal");
   if (event.target === modal) {
@@ -23,7 +21,7 @@ window.onclick = function(event) {
   }
 };
 
-// Theme Toggle
+
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
