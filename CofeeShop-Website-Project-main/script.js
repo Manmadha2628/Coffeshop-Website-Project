@@ -1,64 +1,37 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const themeToggle = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-    const body = document.body;
+let selectedCoffee = '';
 
-    // Check if dark mode is already saved in local storage
-    if (localStorage.getItem("theme") === "dark") {
-        body.classList.add("dark-mode");
-        themeIcon.src = "./Images/moon.png"; // Dark mode icon
-    } else {
-        themeIcon.src = "./Images/sun.png"; // Light mode icon
-    }
+function chooseType(coffee) {
+  selectedCoffee = coffee;
+  document.getElementById("selectedCoffee").innerText = "You chose " + coffee + "!";
+  document.getElementById("selectionModal").style.display = "block";
+}
 
-    // Theme Toggle Functionality
-    themeToggle.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
+function closeModal() {
+  document.getElementById("selectionModal").style.display = "none";
+}
 
-        // Save theme preference to local storage
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-            themeIcon.src = "./Images/moon.png"; // Dark mode icon
-        } else {
-            localStorage.setItem("theme", "light");
-            themeIcon.src = "./Images/sun.png"; // Light mode icon
-        }
-    });
+function selectTemperature(type) {
+  document.getElementById("orderDetails").innerText = "Order: " + selectedCoffee + " (" + type + ")";
+  closeModal();
+}
 
-    // Function to open menu selection modal
-    window.chooseType = function (coffeeType) {
-        const modal = document.getElementById("selectionModal");
-        const selectionTitle = document.getElementById("selectionTitle");
-        const optionsDiv = document.getElementById("options");
-        
-        selectionTitle.textContent = `Choose Hot or Cold for ${coffeeType}`;
-        optionsDiv.innerHTML = `
-            <button onclick="chooseSize('${coffeeType}', 'Hot')">Hot</button>
-            <button onclick="chooseSize('${coffeeType}', 'Cold')">Cold</button>
-        `;
-        
-        modal.style.display = "flex";
-    };
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById("selectionModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
 
-    // Function to choose coffee size
-    window.chooseSize = function (coffeeType, temp) {
-        const optionsDiv = document.getElementById("options");
-        document.getElementById("selectionTitle").textContent = `Choose Size for ${temp} ${coffeeType}`;
-        optionsDiv.innerHTML = `
-            <button onclick="finalSelection('${coffeeType}', '${temp}', 'Small')">Small</button>
-            <button onclick="finalSelection('${coffeeType}', '${temp}', 'Medium')">Medium</button>
-            <button onclick="finalSelection('${coffeeType}', '${temp}', 'Large')">Large</button>
-        `;
-    };
+// Theme Toggle
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
 
-    // Function to confirm final selection
-    window.finalSelection = function (coffeeType, temp, size) {
-        alert(`You selected a ${size} ${temp} ${coffeeType}`);
-        closeModal();
-    };
-
-    // Function to close modal
-    window.closeModal = function () {
-        document.getElementById("selectionModal").style.display = "none";
-    };
-});
+themeToggle.onclick = function() {
+  document.body.classList.toggle("dark-mode");
+  if (document.body.classList.contains("dark-mode")) {
+    themeIcon.src = "./Images/moon.png";
+  } else {
+    themeIcon.src = "./Images/theme.png";
+  }
+};
